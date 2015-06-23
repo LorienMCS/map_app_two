@@ -15,6 +15,6 @@ In the interest of completeness: since I'm also using a lot of their code, here 
 The code and instructions I used came from many different pages in the [Google Maps JavaScript API Tutorial](https://developers.google.com/maps/documentation/javascript/tutorial), so hopefully, linking to the opening page of the tutorial will satisfy the requirement that I link back to the original source page. I am very grateful to Google for the tutorial, and of course also for the opportunity to make use of the Google Maps JavaScript API! It is a dream come true to have even this simple web app, showing a few locations in San Francisco that I think are fun to visit.
 
 
-A few disclaimers:
-- I have only been studying at Galvanize for eight weeks, so there is a lot I still don't know. I look forward to adding features and improvements as I learn more!
+A disclaimer:
+I have only been studying at Galvanize for eight weeks, so there is a lot I still don't know. I look forward to adding features and improvements as I learn more!
 
