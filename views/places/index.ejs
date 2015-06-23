@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+  <title>Welcome to the SF Map App!</title>
+</head>
+<body>
+	<header>
+  		<h1>Welcome to the SF Map App!</h1>
+  		<nav>
+    		<ul>
+				<li><a href="/login">Log In</a></li>
+				<li><a href="/places/new">Add a new post</a></li>
+				<li><a href="/places/<%= place.id%>/edit">Edit</a></li>
+				<li><a href="/logout" id="logout">Logout</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div>
+	<table>
+	<thead>
+			<tr>
+				<th>Place</th>
+				<th>Place User</th>
+				<th>Comments</th>
+			</tr>
+	</thead>
+	<tbody>
+		<% places.forEach(function(place){ %>
+			<tr>
+			<td><%= place.address %></td>
+			<td><%= place.user.name%></td>
+			</tr>
+		<% }) %>
+		</tbody>
+	</table>
+	</div>
+<% include ../partials/footer %>

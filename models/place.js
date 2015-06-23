@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
 	Comment = require('./comment');
 
 var placeSchema = new mongoose.Schema({
+	address: String,
 	body: String,
 	comments: [{
 		type: mongoose.Schema.Types.ObjectId,

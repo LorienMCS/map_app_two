@@ -1,0 +1,188 @@
+/* reset browser styles (from CSS3 The Missing Manual, adapted from Eric Meyer) */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.2;
+}
+ol {
+	padding-left: 1.4em;
+	list-style: decimal;
+}
+ul {
+	padding-left: 1.4em;
+	list-style: square;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* end reset browser styles */
+
+
+* {
+  	font-family: Verdana, Geneva, sans-serif;
+}
+
+
+html {
+	background-color: #F0F0FC;
+}
+
+
+body {
+  	width: 100%;
+  	margin:0 auto;
+}
+
+header{
+  	width:100%;
+  	height:130px;
+  	background:#CAE0FF;
+}
+
+nav {
+	clear: left;
+	width: 100%;
+}
+
+nav ul {
+	overflow: hidden;
+	margin: 0;
+	padding: 0 10px 0 30px;
+	font-size: 1.2em;
+}
+
+nav ul li {
+	list-style: none;
+	float: left;
+	height: 3em;
+	line-height: 2.5em;
+	width: 20%;
+}
+
+h1 {
+  	font-size:45px;
+  	color: #0E6E61;
+}
+
+h2 {
+  	font-size:35px;
+  	color: #6600CC;
+}
+
+h1, h2 {
+  	font-weight:300;
+  	margin:10px 0 20px 0;
+  	text-align: center;
+  	text-shadow: 1px 1px 1px #219183;
+}
+
+a:link {
+	padding: 1px 5px 1px;
+	border: 3px double #008A8A;
+	-webkit-box-shadow: -2px -2px 8px #003D3D;
+	box-shadow: 5px 5px 10px #003D3D;
+	text-decoration: none;
+	color: #00CCFF;
+	background-color: #BDFFF2;
+	-webkit-transition: all 0.5s linear 0.2s;
+	-moz-transition: all 0.5s linear 0.2s;
+	-o-transition: all 0.5s linear 0.2s;
+	transition: all 0.5s linear 0.2s;
+}
+
+a:hover {
+	border: 5px ridge #CCFF33;
+	text-decoration: none;
+	color: #3A901D;
+	background-color: #FFA347;
+}
+
+div {
+  padding: 5px 0 15px 0;
+}
+
+#create, #edit, #login, #signup {
+	font-size: .65em;
+	margin-bottom: 10px;
+	padding: 1px 10px 1px;
+	border: 5px ridge #00664C;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: -2px -2px 8px #003D3D;
+	box-shadow: 5px 5px 10px #5C8383;
+	text-decoration: none;
+	color: #005C44;
+	background-color: #5CE6B8;
+}
+
+#reg, #log {
+	font-size: 1em;
+	padding: 1px 10px 1px;
+	border: 5px ridge #00664C;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: -2px -2px 8px #003D3D;
+	box-shadow: 5px 5px 10px #5C8383;
+	text-decoration: none;
+	color: #005C44;
+	background-color: #B2FFFF;
+}
+
+#logout {
+	font-size: 1em;
+	padding: 1px 10px 1px;
+	border: 3px solid #6600CC;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	-webkit-box-shadow: -2px -2px 8px #003D3D;
+	box-shadow: 5px 5px 10px #003D3D;
+	text-decoration: none;
+	color: #000;
+	background-color: #E6CCFF;
+}
+
+#delete {
+	font-size: .65em;
+	padding: 1px 10px 1px;
+	border: 5px ridge #A70000;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	-webkit-box-shadow: -2px -2px 8px #003D3D;
+	box-shadow: 5px 5px 10px #003D3D;
+	text-decoration: none;
+	color: #000;
+	background-color: #FF4747;
+}
+
+table {
+	font-size: 1em;
+	text-align: left;
+	width: 100%;
+}
+
+thead {
+	font-size: 1.2em;
+}
+
+td, th {
+	border: 1px solid #999;
+  	padding: 0.5rem;
+}
+
+form {
+  	font-size: 1.3em;
+}
+

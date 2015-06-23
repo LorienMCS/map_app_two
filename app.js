@@ -5,6 +5,12 @@
    app = express(),
    methodOverride = require('method-override'),
    bodyParser = require("body-parser"),
+   // User agents request favicon.ico frequently and indiscriminately,
+   // so can exclude these requests from your logs
+   // by using this middleware before your logger middleware.
+   // Caches the icon in memory to improve performance by skipping disk access.
+   favicon = require('serve-favicon'),
+   request = require('request'),
    session = require("cookie-session"),
    // just console.log a few things; useful for debugging
    morgan = require('morgan'),
@@ -27,6 +33,7 @@
    extended: true
  }));
  app.use(methodOverride('_method'));
+ app.use(favicon(__dirname + '/public/favicon.ico'));
  app.use(loginMiddleware);
  app.use(session({
    // only let the cookie live this long (in milliseconds)
@@ -46,7 +53,7 @@
    // this is part of RESTful routing
    // adding info to URL about what we're viewing
    // don't need to be logged into view places
-   res.redirect('/places');
+   res.render('layout');
  });
 
  app.get('/signup', routeMiddleware.preventLoginSignup, function(req, res) {
@@ -60,7 +67,7 @@
    db.User.create(newUser, function(err, user) {
      if (user) {
        req.login(user);
-       res.redirect("/places");
+       res.redirect("/");
      } else {
        signupErr = "Fields can't be blank; email must be unique (not already in database)";
        res.render("users/signup", {
@@ -83,7 +90,7 @@
        // if everything goes well
        if (!err && user !== null) {
          req.login(user);
-         res.redirect("/places");
+         res.redirect("/");
        } else {
          loginErr = "Incorrect Email or Password"
          res.render("users/login", {

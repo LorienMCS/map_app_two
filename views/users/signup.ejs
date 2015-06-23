@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+  <title>SF Map App Sign Up</title>
+</head>
+<body>
+  <header>
+  <h1>Sign Up SF Map App!</h1>
+  <a href="/">Home</a>
+  </header>
+  <h2><% if(error !== undefined) {%>
+    <%= error %>
+  <% }%></h2>
+  <form action="/signup" method="POST">
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" name="user[name]" id="name" autofocus>
+    </div>
+    <div>
+      <label for="user">Email: </label>
+      <input type="text" name="user[email]" id="user">
+    </div>
+    <div>
+      <label for="pass">Password: </label>
+      <input type="password" name="user[password]" id="pass">
+    </div>
+    <input type="submit" value="Sign Up!" id="signup">
+  </form>
+<a href="/login" id="log">Already registered? Log in here!</a>
+<% include ../partials/footer %>
