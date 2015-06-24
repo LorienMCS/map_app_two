@@ -101,24 +101,47 @@
  });
 
 
+ // user pages
+
+ // index of all of the users
+ app.get('/users/index', routeMiddleware.preventLoginSignup, function(req, res) {
+   res.render('users/index')
+ });
+
+ // look up user by id and display their info
+ // TODO: need a corresponding ejs template
+ app.get('/users/:id', function(req, res) {
+   // db.User.findById(req.params.id, function(err,user){
+   //   res.render('users/show', user:user)
+   // }
+ })
+
+
  // place pages
 
- // index of all of the places; anyone can see them
- app.get('/places', function(req, res) {
+ // index of all of the places; have to be logged in to see them
+ app.get('/places', routeMiddleware.ensureLoggedIn, function(req, res) {
    // find is a class method (Place is a class)
    // find is going to return an array
-   // Miles helped me with this
-   // later, add .populate("comments") when there are comments
-   db.Place.find({}).populate("user").exec(function(err, places) {
+   db.Place.find({}).populate("user", "name").exec(function(err, places) {
      if (err) {
        res.render("errors/500");
      } else {
-       console.log(places);
-       // key matches index.ejs, value comes from the database
-       res.render('places/index', {
-         // in view code, forEach and then place.user.name
-         places: places
-       });
+       if (req.session.id == null) {
+         res.render('places/index', {
+           places: places,
+           currentuser: ""
+         });
+       } else {
+         db.User.findById(req.session.id, function(err, user) {
+           // key matches index.ejs, value comes from the database
+           res.render('places/index', {
+             // in view code, forEach and then place.user.name
+             places: places,
+             currentuser: user.name
+           });
+         })
+       }
      }
    });
  });
@@ -128,12 +151,16 @@
  // it took me forever to remember that as long as a user is logged in
  // don't need user id in route for new place (it's taken care of through middleware)
  app.get('/places/new', routeMiddleware.ensureLoggedIn, function(req, res) {
-   res.render('places/new');
+   res.render('places/new', {
+     user_id: req.session.id
+   });
  });
 
  // create a new place
  app.post('/places', routeMiddleware.ensureLoggedIn, function(req, res) {
    // req.body.place is an object
+   // Tim explained: I don't need create because it's a call to database
+   // which is taken care of by save, below (two calls would be redundant)
    var place = new db.Place(req.body.place);
    // get the user ID from the session, since can't create a place without being logged in
    // (so set place user ID equal to whatever user just logged in)
@@ -141,11 +168,77 @@
    // need to change place.user to whatever the key is called (like place.userId)
    place.user = req.session.id;
    place.save(function(err) {
-     if (err) throw err;
+     if (err) {
+       throw err;
+     }
      res.redirect("/places");
    });
  });
 
+
+// lookup place by id and display it
+ app.get('/places/:id', routeMiddleware.ensureLoggedIn, function(req, res) {
+   // findById is a class method on the Place model
+   // req.params.id getting info by an id
+   db.Place.findById(req.params.id).populate('comments').exec(function(err, foundPlace) {
+     if (err) {
+       res.render("errors/404");
+     } else {
+       // the data is coming from the database now
+       res.render('places/show', {
+         place: foundPlace
+       });
+     }
+   });
+ });
+
+ // display a form to edit a specific place
+ // need to make sure only the correct user can edit
+ // don't need to ensureLoggedIn, because ensureCorrectPlaceUser
+ // redirects to /places, and we've got ensureLoggedIn in /places route
+ // (the reddit code solution was missing some necessary auth code
+ // which is how I learned about this stuff when I asked about it)
+ app.get('/places/:id/edit', routeMiddleware.ensureCorrectPlaceUser, function(req, res) {
+   db.Place.findById(req.params.id, function(err, foundPlace) {
+     if (err) {
+      // Elie says, not 404; 500 is correct
+       res.render("errors/500");
+     } else {
+       res.render('places/edit', {
+         place: foundPlace
+       });
+     }
+   });
+ });
+
+ // update specific place with data from edit
+ app.put('/places/:id', routeMiddleware.ensureCorrectPlaceUser, function(req, res) {
+   // what we're finding, what we're updating it with
+   // params is from the part of the URL that is not the query string
+   // req.body captures from POST; req.body.country is an entire object
+   db.Country.findByIdAndUpdate(req.params.id, req.body.place, function(err, country) {
+     if (err) {
+       res.render("errors/500");
+     } else {
+       res.redirect('/places/' + req.params.id);
+     }
+   });
+ });
+
+// look up a place by id and delete it
+ app.delete('/countries/:id', routeMiddleware.ensureCorrectPlaceUser, function(req, res) {
+   // we're getting the correct id from the form
+   db.Country.findByIdAndRemove(req.params.id, function(err, country) {
+     if (err) {
+       res.render("errors/500");
+     } else {
+       res.redirect('/places');
+     }
+   });
+ });
+
+
+// TODO: comment routes
 
 
  app.get("/logout", function(req, res) {
@@ -163,75 +256,3 @@
    console.log("Server is listening on port 3000");
  });
 
-
-
- // everything above this line should work
-
- /* all this code is from my country auth solution - FOR REFERENCE
-
- // INDEX
- // always need leading slash for routes
- // countries "belong" to a user, so the user needs to be
- // the only one who can edit them
-
-
- // SHOW
- app.get('/countries/:id', routeMiddleware.ensureLoggedIn, function(req, res) {
-   // findById is a class method on the Country model
-   // req.params.id getting info by an id
-   db.Country.findById(req.params.id, function(err, foundCountry) {
-     if (err) {
-       res.render("errors/404");
-     } else {
-       // the data is coming from the database now
-       res.render('countries/show', {
-         country: foundCountry
-       });
-     }
-   });
- });
-
- // EDIT
- // need to make sure only the correct user can edit
- app.get('/countries/:id/edit', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectUser, function(req, res) {
-   db.Country.findById(req.params.id, function(err, foundCountry) {
-     if (err) {
-       res.render("errors/404");
-     } else {
-       res.render('countries/edit', {
-         country: foundCountry
-       });
-     }
-   });
- });
-
- // UPDATE
- app.put('/countries/:id', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectUser, function(req, res) {
-   // what we're finding, what we're updating it with
-   // params is from the part of the URL that is not the query string
-   // req.body captures from POST; req.body.country is an entire object
-   db.Country.findByIdAndUpdate(req.params.id, req.body.country, function(err, country) {
-     if (err) {
-       res.render("errors/404");
-     } else {
-       res.redirect('/countries');
-     }
-   });
- });
-
- // DESTROY
- app.delete('/countries/:id', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectUser, function(req, res) {
-   // we're getting the correct id from the form
-   db.Country.findByIdAndRemove(req.params.id, function(err, country) {
-     if (err) {
-       res.render("errors/404");
-     } else {
-       res.redirect('/countries');
-     }
-   });
- });
-
- app.get("/logout", function (req, res) {
-   req.logout();
-   res.redirect("/");
- }); */
