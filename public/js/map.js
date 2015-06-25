@@ -22,35 +22,30 @@ $(function() {
 
   } // closing tag for initialize function
 
-function addMarker(lat, long, description) {
-    var thisLatLong = new google.maps.LatLng(lat,long);
-    console.log(map);
-
-    var marker = new google.maps.Marker({
-      position: thisLatLong,
-      map: map,
-      description: description
-    });
-
-    addInfoWindow(marker, description);
-  }
-
-  function addInfoWindow(marker, description) {
-    var infowindow = new google.maps.InfoWindow({
-      content: description
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(marker.get('map'), marker);
-    });
-  }
-
   function loadPlaces() {
     $.getJSON('/places').done(function(data) {
       data.places.forEach(function(place) {
-        console.log(place);
-        addMarker(place.lat, place.long, place.address);
-      });
+        var thisLatLong = new google.maps.LatLng(place.lat, place.long);
+
+        // From the Google docs: The following fields are particularly
+        // important and commonly set when constructing a marker:
+        // position (required) specifies a LatLng identifying the initial location of the marker.
+        // map (optional) specifies the Map on which to place the marker.
+        // The marker's title will appear as a tooltip.
+        var marker = new google.maps.Marker({
+          position: thisLatLong,
+          map: map,
+          title: place.address
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: place.description
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(marker.get('map'), marker);
+        });
+      }); // closing bracket for forEach
     }).fail(function() {
       alert('Could not load stored places');
     });
@@ -59,8 +54,4 @@ function addMarker(lat, long, description) {
   initialize();
   loadPlaces();
 
-
 }); // closing tag for everything in this file
-
-
-
