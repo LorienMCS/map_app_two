@@ -25,6 +25,36 @@ $(function() {
 
   } // closing tag for initialize function
 
+
+
+  function checkForLoc() {
+    if (Modernizr.geolocation) {
+      navigator.geolocation.getCurrentPosition(getLoc, resErr);
+    } else {
+      alert('Your browser does not support geolocation');
+    }
+  }
+
+  function getLoc(location) {
+    var userLatLong = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+    var marker = new google.maps.Marker({
+      position: userLatLong,
+      map: map,
+      title: "You Are Here!"
+    });
+  }
+
+  function resErr(error) {
+    if (error.code == 1) {
+      alert('Your privacy is respected! Your location has not been detected.');
+    } else if (error.code == 2) {
+      alert('Location Unavailable');
+    } else if (error.code == 3) {
+      alert('TimeOut');
+    }
+  }
+
+
   function loadPlaces() {
     $.getJSON('/places').done(function(data) {
       data.places.forEach(function(place) {
@@ -55,6 +85,7 @@ $(function() {
   }
 
   initialize();
+  checkForLoc();
   loadPlaces();
 
 
