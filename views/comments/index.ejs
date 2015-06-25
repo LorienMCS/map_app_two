@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+<title>All Comments</title>
+</head>
+<body>
+  <div>
+    <div>
+
+      <a href="/places">View All Places</a>
+    </div>
+    <h1>Comments</h1>
+  </div><% comments.forEach(function(comment){ %>
+  <div id="allComments">
+    <p><%= comment.body %></p>
+    <div>
+      <a href="/comments/<%= comment.id %>/edit">Edit</a>
+
+      <form action="/comments/<%= comment.id %>?_method=delete" method="POST">
+        <input type="submit" value="Delete">
+      </form>
+
+    </div>
+  </div>
+  <% })%>
+
+<% include ../partials/footer %>

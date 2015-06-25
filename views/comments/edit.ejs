@@ -1,0 +1,21 @@
+<%= include ../partials/header %>
+<title>Edit Comment</title>
+</head>
+<body>
+  <div class="ui two column centered grid">
+    <div class="column">
+    	<h1>Edit your comment.</h1>
+    	<form action="/comments/<%= comment.id %>?_method=put" method="POST">
+    		<div class="ui form segment">
+    			<div class="field">
+    				  <label for="comments">Comments:</label>
+    				  <input type="text" name="comment[body]" id="comments" value="<%= comment.body %>">
+    			</div>
+    		 	<input class="ui submit purple button" type="submit">
+          </div>
+          </div>
+    		</div>
+    	</form>
+    </div>
+  </div>
+<%= include ../partials/footer %>

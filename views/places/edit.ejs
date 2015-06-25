@@ -9,13 +9,13 @@
   </div>
   <div class="form-group">
     <label for="description">Description: </label>
-    <input type="text" class="form-control" name="place[body]" id="description" value="<%=place.body%>"autofocus>
+    <input type="text" class="form-control" name="place[description]" id="description" value="<%=place.description%>"autofocus>
   </div>
-  <input type="submit" value="Save" class="btn btn-lg btn-success">
+  <input type="submit" value="Save">
 </form>
 
 
 <form action="/places/<%= place.id%>?_method=DELETE" method="POST">
-    <input type="submit" value="Delete" class="btn btn-danger">
+    <input type="submit" value="Delete" id="delete">
 </form>
 <% include ../partials/footer %>

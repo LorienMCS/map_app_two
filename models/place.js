@@ -4,7 +4,9 @@ var mongoose = require('mongoose'),
 
 var placeSchema = new mongoose.Schema({
 	address: String,
-	body: String,
+	lat:  Number,
+  long:  Number,
+	description: String,
 	comments: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Comment"

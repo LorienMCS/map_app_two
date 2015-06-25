@@ -2,11 +2,15 @@
 <h1>Add a new place</h1>
 <a href="/places">See all places</a>
 
-<form action="/places" method="POST">
+<form id="addplaceform" action="/places" method="POST">
   <div class="form-group">
     <label for="name">Address: </label>
     <input type="text" class="form-control" name="place[address]" id="address" autofocus>
   </div>
-  <input type="submit" value="Add" class="btn btn-lg btn-success">
+  <div class="form-group">
+    <label for="name">Description: </label>
+    <input type="text" class="form-control" name="place[description]" id="description" autofocus>
+  </div>
+  <input type="submit" value="Add Place">
 </form>
 <% include ../partials/footer %>

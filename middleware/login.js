@@ -6,6 +6,12 @@ var db = require("../models");
 var loginMiddleware = function (req, res, next) {
 
   req.login = function (user) {
+  	// set the user id which we're getting from the database
+  	// we're attaching the id key onto the session object
+  	// and giving it a value equal to whatever the id is of the user
+  	// that is successfully authenticated
+  	// everything set on the cookie will be stringified
+  	// so req.session.id is a string
     req.session.id = user._id;
   };
 

@@ -1,0 +1,13 @@
+<%= include ../partials/header %>
+<title>Comment Detail</title>
+</head>
+<body>
+	<a href="/comments">Back</a>
+	<p><%= comment.body %></p>s
+
+	<form action="/comments/<%= comment._id %>?_method=delete" method="POST">
+		<input type="submit" value="delete">
+	</form>
+
+<%= include ../partials/footer %>
+

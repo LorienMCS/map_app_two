@@ -15,9 +15,15 @@ var routeMiddleware = {
 
   // to make sure users can't delete each other's places
   ensureCorrectPlaceUser: function(req, res, next) {
-    // need .populate because using ref (one to many, etc)
-    db.Place.findById(req.params.id).populate('user').exec(function(err, place) {
-      if (place.user !== req.session.id) {
+    // if you do place.user without populating, you just get user id
+    db.Place.findById(req.params.id, function(err, place) {
+      // not necessarily best practice to use double equals
+      // but in this case we know for sure that the types don't matter
+      // mongoose object lets you cast it to a string
+      // console.log(place.user.toString());
+      // console.log(req.session.id);
+      // place.user will be an object
+      if (place.user.toString() !== req.session.id) {
         // redirect to /places, which includes ensureLoggedIn in its route
         res.redirect('/places');
       } else {
@@ -29,8 +35,10 @@ var routeMiddleware = {
   // to make sure users can't delete each other's comments
   ensureCorrectCommentUser: function(req, res, next) {
     // need .populate because using ref (one to many, etc)
-    db.Comment.findById(req.params.id).populate('user').exec(function(err, comment) {
-      if (comment.user != undefined && comment.user.id != req.session.id) {
+    db.Comment.findById(req.params.id, function(err, comment) {
+      // undefined is a falsey value, so can do ! instead of == undefined
+      // and vice-versa, I think
+      if (comment.user.toString() !== req.session.id) {
         res.redirect('/places/' + comment.place + '/comments');
       } else {
         return next();

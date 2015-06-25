@@ -1,15 +1,16 @@
 <% include ../partials/header %>
-  <title>Welcome to the SF Map App!</title>
+  <title>View All Places</title>
 </head>
 <body>
 	<header>
-  		<h1>Welcome to the SF Map App!</h1>
+  		<h1>View All Places</h1>
   		<nav>
     		<ul>
 				<li><a href="/login">Log In</a></li>
-				<li><a href="/places/new">Add a new post</a></li>
-				<li><a href="/places/<%= place.id%>/edit">Edit</a></li>
+				<% if(user !== ""){ %>
+				<li><a href="/places/new">Add a new place</a></li>
 				<li><a href="/logout" id="logout">Logout</a></li>
+				<% }  %>
 			</ul>
 		</nav>
 	</header>
@@ -18,14 +19,13 @@
 	<thead>
 			<tr>
 				<th>Place</th>
-				<th>Place User</th>
-				<th>Comments</th>
+				<th>User</th>
 			</tr>
 	</thead>
 	<tbody>
 		<% places.forEach(function(place){ %>
 			<tr>
-			<td><%= place.address %></td>
+			<td><a href="/places/<%= place.id %>"><%= place.address %></a></td>
 			<td><%= place.user.name%></td>
 			</tr>
 		<% }) %>
