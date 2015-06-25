@@ -2,18 +2,18 @@
 <title>Add A Comment</title>
 </head>
 <body>
-  <div class="ui two column centered grid">
-    <div class="column">
-    	<h1>Create a new comment!</h1>
+  <div>
+    <div>
+    	<h1>Create a new comment</h1>
     	<form action="/places/<%= place.id %>/comments" method="POST">
-    		<div class="ui form segment">
-    			<div class="field">
+    		<div>
+    			<div>
   				  <label for="comments">Comments:</label>
-  				  <textarea type="text" name="comment[body]" id="comments" placeholder="Write your comment.."></textarea>
+  				  <textarea type="text" name="comment[body]" id="comments" placeholder="Add a comment here"></textarea>
           </div>
           <input type="hidden" name="comment[user]" id="user" value="<%= user_id %>">
-    		 	<input class="ui submit purple button" type="submit">
-    		 	<a href="/places/<%= place.id %>/comments" class="ui submit default button" type="submit">Cancel</a>
+    		 	<input type="submit">
+    		 	<a href="/places/<%= place.id %>/comments">Cancel</a>
     			</div>
     		</div>
     	</form>

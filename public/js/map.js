@@ -1,6 +1,9 @@
 // wrap other $() operations on your page that depend on the DOM being ready
 $(function() {
   var map;
+  var transitLayer;
+  var bikeLayer;
+  var trafficLayer;
 
   function initialize() {
     // get the div element to put the map in
@@ -16,9 +19,9 @@ $(function() {
     // Map constructor creates a new map using any optional parameters that are passed in
     map = new google.maps.Map(mapDiv, mapOptions);
 
-    // display public transit network using the TransitLayer object
-    var transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
+    transitLayer = new google.maps.TransitLayer();
+    bikeLayer = new google.maps.BicyclingLayer();
+    trafficLayer = new google.maps.TrafficLayer();
 
   } // closing tag for initialize function
 
@@ -47,11 +50,58 @@ $(function() {
         });
       }); // closing bracket for forEach
     }).fail(function() {
-      alert('Could not load stored places');
+      console.log('User not signed in');
     });
   }
 
   initialize();
   loadPlaces();
+
+
+  //display public transit network using the TransitLayer object
+  function showTransit() {
+    bikeLayer.setMap(null);
+    trafficLayer.setMap(null);
+    if (typeof transitLayer.getMap() == 'undefined' || transitLayer.getMap() === null) {
+      transitLayer.setMap(map);
+    } else {
+      transitLayer.setMap(null);
+    };
+  }
+
+  function showBike() {
+    transitLayer.setMap(null);
+    trafficLayer.setMap(null);
+    if (typeof bikeLayer.getMap() == 'undefined' || bikeLayer.getMap() === null) {
+      bikeLayer.setMap(map);
+    } else {
+      bikeLayer.setMap(null);
+    };
+  }
+
+  function showTraffic() {
+    bikeLayer.setMap(null);
+    transitLayer.setMap(null);
+    if (typeof trafficLayer.getMap() == 'undefined' || trafficLayer.getMap() === null) {
+      trafficLayer.setMap(map);
+    } else {
+      trafficLayer.setMap(null);
+    };
+  }
+
+  $("#transit").click(function(event) {
+    event.stopPropagation();
+    showTransit();
+  });
+
+  $("#bike").click(function(event) {
+    event.stopPropagation();
+    showBike();
+  });
+
+  $("#traffic").click(function(event) {
+    event.stopPropagation();
+    showTraffic();
+  });
 
 }); // closing tag for everything in this file
