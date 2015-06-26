@@ -1,17 +1,17 @@
 <%= include ../partials/header %>
 <title>Add A Comment</title>
 </head>
-<body>
+<body class = "container">
   <div>
     <div>
-    	<h1>Create a new comment</h1>
-    	<form action="/places/<%= place.id %>/comments" method="POST">
+    	<h1>Add a comment</h1>
+    	<form role="form" action="/places/<%= place.id %>/comments" method="POST">
     		<div>
     			<div>
   				  <label for="comments">Comments:</label>
-  				  <textarea type="text" name="comment[body]" id="comments" placeholder="Add a comment here"></textarea>
+  				  <textarea type="text" name="comment[body]" class="form-control" rows="5" cols="30" id="comments" placeholder="Add a comment here"></textarea>
           </div>
-          <input type="hidden" name="comment[user]" id="user" value="<%= user_id %>">
+          <input type="hidden" class="hidden" name="comment[user]" id="user" value="<%= user_id %>">
     		 	<input type="submit">
     		 	<a href="/places/<%= place.id %>/comments">Cancel</a>
     			</div>

@@ -1,16 +1,19 @@
 <% include ../partials/header %>
-<h1>Add a new place</h1>
-<a href="/places">See all places</a>
+<title>Add A New Place</title>
+</head>
+<body class = "container">
+	<h1>Add a new place</h1>
+	<a href="/places">See all places</a>
 
-<form id="addplaceform" action="/places" method="POST">
-  <div class="form-group">
-    <label for="name">Address: </label>
-    <input type="text" class="form-control" name="place[address]" id="address" autofocus>
-  </div>
-  <div class="form-group">
-    <label for="name">Description: </label>
-    <input type="text" class="form-control" name="place[description]" id="description" autofocus>
-  </div>
-  <input type="submit" value="Add Place">
-</form>
+	<form role="form" id="addplaceform" action="/places" method="POST">
+  	<div class="form-group">
+    	<label for="name">Address: </label>
+    	<input type="text" class="form-control" name="place[address]" id="address" autofocus>
+  	</div>
+  	<div class="form-group">
+    	<label for="name">Description:</label>
+      <textarea type="text" name="place[description]" class="form-control" rows="8" cols="40" id="description" placeholder="Enter your place here! Please add name of place first, then a description."></textarea>
+  	</div>
+  	<input type="submit" value="Add Place">
+	</form>
 <% include ../partials/footer %>

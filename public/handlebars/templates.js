@@ -1,1 +1,0 @@
-var show = Handlebars.compile("<h1>Example of showing a place {{name}}, {{lat}}, {{long}}</h1>");

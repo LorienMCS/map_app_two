@@ -1,29 +1,32 @@
 <%= include ../partials/header %>
 <title>View A Place</title>
 </head>
-<body>
-      <div>
-        <p><%= place.address %></p>
-        <p><%= place.description %></p>
-      </div>
-      <div>
+<body class = "container">
+  <header>
+    <h1>Details of <%= place.address %></h1>
+  </header>
+
+  <div>
+    <p><strong>Address:</strong> <%= place.address %></p>
+    <p><strong>Description:</strong> <%= place.description %></p>
+  </div>
+
+
+  <div>
 				<a href="/places/<%= place.id %>/edit">Edit</a>
 
-				<form action="/places/<%= place.id %>?_method=delete" method="POST">
+				<form role="form" action="/places/<%= place.id %>?_method=delete" method="POST">
 					<input type="submit" value="Delete" id="delete">
 				</form>
 
       </div>
 
 <div>
-  <h4>Comments</h4>
 </div>
 <div>
   <a href="/places/<%= place._id%>/comments">See all comments on this post</a>
   <a href="/places/<%= place._id%>/comments/new">Add a new comment</a>
   <a href="/places">Back</a>
-  <h4></h4>
-  <div id="comments"></div>
 </div>
 
 

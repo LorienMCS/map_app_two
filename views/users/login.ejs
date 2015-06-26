@@ -1,7 +1,7 @@
 <% include ../partials/header %>
   <title>SF Map App Log In</title>
 </head>
-<body>
+<body class = "container">
   <header>
   <h1>Log In to the SF Map App!</h1>
   <a href="/">Home</a>
@@ -9,7 +9,7 @@
   <h2><% if(error !== undefined) {%>
     <%= error %>
   <% }%></h2>
-  <form action="/login" method="POST">
+  <form role="form" action="/login" method="POST">
     <div>
       <label for="email">Email: </label>
       <input type="text" name="user[email]" id="email" autofocus>

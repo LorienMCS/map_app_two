@@ -1,25 +1,25 @@
 <% include partials/headermap %>
-<h1>Welcome to the SF Map App!</h1>
+<header>
+	<h1>Welcome to the SF Map App!</h1>
+	<nav class="navbar navbar-default" role="navigation">
+   	<div class="navbar-header">
+			<ul class="nav navbar-nav">
+   			<li><a href="/signup">Signup to see places</a></li>
+   			<li><a href="/login">Login to see places</a></li>
+   			<li><a href="/places">See list of all places</a></li>
+   			<li><a id="newplacelink" href="/places/new">Add a new place</a></li>
+   			<li><a id="logout" href="/logout">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+</header>
+
 <div id="map-canvas"></div>
-<a href="/signup">Signup to see the places</a>
-<a href="/login">Login to see the places</a>
-<a href="/places">See list of all places</a>
-<a id="newplacelink" href="/places/new">Add a new place!</a>
-<a id="logout" href="/logout">Logout</a>
 
-<div>
-  <input type="button" value="Show Transit Routes" id ="transit"></input>
+<div <div class="btn-group-vertical">
+  <input type="button" class="btn btn-info" value="Show Transit Routes" id ="transit"></input>
+  <input type="button" class="btn btn-info" value="Show Bicycle Routes" id ="bike"></input>
+  <input type="button" class="btn btn-info" value="Show Traffic Routes" id ="traffic"></input>
 </div>
 
-<div>
-  <input type="button" value="Show Bicycle Routes" id ="bike"></input>
-</div>
-
-<div>
-  <input type="button" value="Show Traffic Routes" id ="traffic"></input>
-</div>
-
-
-
-<div id="details"></div>
 <% include partials/footermap %>

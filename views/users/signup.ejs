@@ -1,7 +1,7 @@
 <% include ../partials/header %>
   <title>SF Map App Sign Up</title>
 </head>
-<body>
+<body class = "container">
   <header>
   <h1>Sign Up SF Map App!</h1>
   <a href="/">Home</a>
@@ -9,18 +9,18 @@
   <h2><% if(error !== undefined) {%>
     <%= error %>
   <% }%></h2>
-  <form action="/signup" method="POST">
-    <div>
+  <form role="form" action="/signup" method="POST">
+    <div class="form-group">
       <label for="name">Name: </label>
-      <input type="text" name="user[name]" id="name" autofocus>
+      <input type="text" name="user[name]" class="form-control" id="name" autofocus>
     </div>
-    <div>
+    <div class="form-group">
       <label for="user">Email: </label>
-      <input type="text" name="user[email]" id="user">
+      <input type="text" name="user[email]" class="form-control" id="user">
     </div>
-    <div>
+    <div class="form-group">
       <label for="pass">Password: </label>
-      <input type="password" name="user[password]" id="pass">
+      <input type="password" name="user[password]" class="form-control" id="pass">
     </div>
     <input type="submit" value="Sign Up!" id="signup">
   </form>
