@@ -40,7 +40,8 @@ $(function() {
     var marker = new google.maps.Marker({
       position: userLatLong,
       map: map,
-      title: "You Are Here!"
+      title: "You Are Here!",
+      icon: 'user.png'
     });
   }
 
@@ -68,7 +69,8 @@ $(function() {
         var marker = new google.maps.Marker({
           position: thisLatLong,
           map: map,
-          title: place.address
+          title: place.address,
+          icon: 'iconSF.png'
         });
 
         var infowindow = new google.maps.InfoWindow({
