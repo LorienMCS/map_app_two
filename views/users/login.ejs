@@ -10,13 +10,13 @@
     <%= error %>
   <% }%></h2>
   <form role="form" action="/login" method="POST">
-    <div>
+    <div class="form-group">
       <label for="email">Email: </label>
-      <input type="text" name="user[email]" id="email" autofocus>
+      <input type="text" name="user[email]" class="form-control" id="email" autofocus>
     </div>
-    <div>
+    <div class="form-group">
       <label for="pw">Password: </label>
-      <input type="password" name="user[password]" id="pw">
+      <input type="password" name="user[password]" class="form-control" id="pw">
     </div>
     <input type="submit" value="Log In!" id="login">
   </form>

@@ -1,76 +1,25 @@
-* {
-  	font-family: Verdana, Geneva, sans-serif;
-}
-
-
 html {
 	background-color: #F0F0FC;
 }
 
-
-body {
-  	width: 100%;
-  	margin:0 auto;
-}
-
 h1 {
-  	font-size:45px;
   	color: #0E6E61;
 }
 
 h2 {
-  	font-size:35px;
   	color: #6600CC;
 }
 
 h1, h2 {
-  	font-weight:300;
-  	margin:10px 0 20px 0;
-  	text-align: center;
   	text-shadow: 1px 1px 1px #219183;
 }
 
 
 
-#create, #edit, #login, #signup {
-	font-size: .65em;
-	margin-bottom: 10px;
-	padding: 1px 10px 1px;
-	border: 5px ridge #00664C;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: -2px -2px 8px #003D3D;
-	box-shadow: 5px 5px 10px #5C8383;
-	text-decoration: none;
-	color: #005C44;
-	background-color: #5CE6B8;
-}
 
-#reg, #log {
-	font-size: 1em;
-	padding: 1px 10px 1px;
-	border: 5px ridge #00664C;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	-webkit-box-shadow: -2px -2px 8px #003D3D;
-	box-shadow: 5px 5px 10px #5C8383;
-	text-decoration: none;
-	color: #005C44;
-	background-color: #B2FFFF;
-}
 
-#delete {
-	font-size: .65em;
-	padding: 1px 10px 1px;
-	border: 5px ridge #A70000;
-	-webkit-border-radius: 20px;
-	border-radius: 20px;
-	-webkit-box-shadow: -2px -2px 8px #003D3D;
-	box-shadow: 5px 5px 10px #003D3D;
-	text-decoration: none;
-	color: #000;
-	background-color: #FF4747;
-}
+
+
 
 
 
