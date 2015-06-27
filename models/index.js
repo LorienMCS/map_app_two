@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/map_with_usersdb");
+mongoose.connect(process.env.MONGOLAB_URI || "mongodb://localhost/map_with_usersdb");
 
 mongoose.set("debug", true);
 

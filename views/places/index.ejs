@@ -1,13 +1,12 @@
 <% include ../partials/header %>
-  <title>View All Places</title>
+  <title>All Places</title>
 </head>
 <body class = "container">
 	<header>
-  	<h1>View All Places</h1>
+  	<h1>All Places</h1>
 		<nav class="navbar navbar-default" role="navigation">
    		<div class="navbar-header">
 				<ul class="nav navbar-nav">
-   				<li><a href="/login">Log In</a></li>
 					<% if(user !== ""){ %>
 					<li><a href="/">View Places on Map!</a></li>
 					<li><a href="/places/new">Add a new place</a></li>
