@@ -41,7 +41,7 @@ $(function() {
       position: userLatLong,
       map: map,
       title: "You Are Here!",
-      icon: 'user.png'
+      icon: 'usermarker.png'
     });
   }
 
@@ -70,7 +70,7 @@ $(function() {
           position: thisLatLong,
           map: map,
           title: place.address,
-          icon: 'iconSF.png'
+          icon: 'sfmarker.png'
         });
 
         var infowindow = new google.maps.InfoWindow({
