@@ -2,8 +2,18 @@
 <title>Add A New Place</title>
 </head>
 <body class = "container">
-	<h1>Add a new place</h1>
-	<a href="/places">See all places</a>
+  <header>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav">
+          <li><a href="/">View Places on Map!</a></li>
+          <li><a href="/places">View List of All Places</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1>Add a new place</h1>
+  </header>
 
 	<form role="form" id="addplaceform" action="/places" method="POST">
   	<div class="form-group">

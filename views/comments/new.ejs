@@ -2,21 +2,31 @@
 <title>Add A Comment</title>
 </head>
 <body class = "container">
+  <header>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav">
+          <li><a href="/">View Places on Map!</a></li>
+          <li><a href="/places">View List of All Places</a></li>
+          <li><a href="/logout" id="logout">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1>Add a comment</h1>
+  </header>
+
   <div>
-    <div>
-    	<h1>Add a comment</h1>
-    	<form role="form" action="/places/<%= place.id %>/comments" method="POST">
+    <form role="form" action="/places/<%= place.id %>/comments" method="POST">
+    	<div>
     		<div>
-    			<div>
-  				  <label for="comments">Comments:</label>
-  				  <textarea type="text" name="comment[body]" class="form-control" rows="5" cols="30" id="comments" placeholder="Add a comment here"></textarea>
-          </div>
+  				<label for="comments">Comments:</label>
+  				<textarea type="text" name="comment[body]" class="form-control" rows="5" cols="30" id="comments" placeholder="Add a comment here"></textarea>
+        </div>
           <input type="hidden" class="hidden" name="comment[user]" id="user" value="<%= user_id %>">
     		 	<input type="submit">
-    		 	<a href="/places/<%= place.id %>/comments">Cancel</a>
-    			</div>
+    		 	<a href="/places/<%= place.id %>">Cancel</a>
     		</div>
-    	</form>
-    </div>
+    	</div>
+    </form>
   </div>
 <%= include ../partials/footer %>

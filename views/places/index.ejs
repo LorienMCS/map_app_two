@@ -3,18 +3,18 @@
 </head>
 <body class = "container">
 	<header>
-  	<h1>All Places</h1>
 		<nav class="navbar navbar-default" role="navigation">
    		<div class="navbar-header">
 				<ul class="nav navbar-nav">
 					<% if(user !== ""){ %>
 					<li><a href="/">View Places on Map!</a></li>
 					<li><a href="/places/new">Add a new place</a></li>
-					<li><a href="/logout" id="logout">Logout</a></li>
+					<li><a href="/logout">Logout</a></li>
 					<% }  %>
 				</ul>
 			</div>
 		</nav>
+		<h1>All Places</h1>
 	</header>
 
 	<div class="table-responsive">

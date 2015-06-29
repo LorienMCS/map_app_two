@@ -1,25 +1,41 @@
 <% include ../partials/header %>
-<title>All Comments</title>
+<title>Comments</title>
 </head>
 <body class = "container">
-  <div>
-    <div>
-
-      <a href="/places">View All Places</a>
-    </div>
+  <header>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav">
+          <li><a href="/">View Places on Map!</a></li>
+          <li><a href="/places">View List of All Places</a></li>
+          <li><a href="/logout" id="logout">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
     <h1>Comments</h1>
-  </div><% comments.forEach(function(comment){ %>
-  <div id="allComments">
-    <p><%= comment.body %></p>
-    <div>
-      <a href="/comments/<%= comment.id %>/edit">Edit</a>
+  </header>
 
-      <form action="/comments/<%= comment.id %>?_method=delete" method="POST">
+  <div class="table-responsive">
+  <table class="table table-bordered table-hover">
+  <thead>
+      <tr>
+        <th>Comment</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% comments.forEach(function(comment){ %>
+      <tr>
+      <td><%= comment.body %></td>
+      <td><a href="/comments/<%= comment.id %>/edit">Edit</a></td>
+      <td><form action="/comments/<%= comment.id %>?_method=delete" method="POST">
         <input type="submit" value="Delete">
-      </form>
-
-    </div>
+      </form></td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
   </div>
-  <% })%>
 
 <% include ../partials/footer %>
