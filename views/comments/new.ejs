@@ -15,18 +15,14 @@
     <h1>Add a comment</h1>
   </header>
 
-  <div>
-    <form role="form" action="/places/<%= place.id %>/comments" method="POST">
-    	<div>
-    		<div>
-  				<label for="comments">Comments:</label>
-  				<textarea type="text" name="comment[body]" class="form-control" rows="5" cols="30" id="comments" placeholder="Add a comment here"></textarea>
-        </div>
-          <input type="hidden" class="hidden" name="comment[user]" id="user" value="<%= user_id %>">
-    		 	<input type="submit">
-    		 	<a href="/places/<%= place.id %>">Cancel</a>
-    		</div>
-    	</div>
-    </form>
-  </div>
+  <form role='form' action='/places/<%= place.id %>/comments' method='POST'>
+    <label for='comment'>Comment:</label>
+    <textarea type='text' name='comment[body]' class='form-control' rows='5' cols='30' id='comment' placeholder='Add a comment here'></textarea>
+    <input type='hidden' class='hidden' name='comment[user]' id='user' value='<%= user_id %>'>
+    <input type='submit'>
+  </form>
+
+  <p></p>
+  <a href="/places/<%= place.id %>">Cancel</a>
+
 <%= include ../partials/footer %>

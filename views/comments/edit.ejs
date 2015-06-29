@@ -7,8 +7,8 @@
     	<h1>Edit your comment.</h1>
     	<form role="form" action="/comments/<%= comment.id %>?_method=put" method="POST">
     		<div class="form-group">
-    			<label for="comments">Comments:</label>
-    			<input type="text" name="comment[body]" class="form-control" id="comments" value="<%= comment.body %>">
+    			<label for="comment">Comment:</label>
+    			<input type="text" name="comment[body]" class="form-control" id="comment" value="<%= comment.body %>">
     		</div>
     		 	<input type="submit">
     	</form>

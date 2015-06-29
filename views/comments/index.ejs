@@ -17,23 +17,23 @@
 
   <div class="table-responsive">
   <table class="table table-bordered table-hover">
-  <thead>
+    <thead>
       <tr>
         <th>Comment</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
-  </thead>
-  <tbody>
-    <% comments.forEach(function(comment){ %>
-      <tr>
-      <td><%= comment.body %></td>
-      <td><a href="/comments/<%= comment.id %>/edit">Edit</a></td>
-      <td><form action="/comments/<%= comment.id %>?_method=delete" method="POST">
-        <input type="submit" value="Delete">
-      </form></td>
-      </tr>
-    <% }) %>
+    </thead>
+    <tbody>
+      <% comments.forEach(function(comment){ %>
+        <tr>
+          <td><%= comment.body %></td>
+          <td><a href="/comments/<%= comment.id %>/edit">Edit</a></td>
+          <td><form action="/comments/<%= comment.id %>?_method=delete" method="POST">
+          <input type="submit" value="Delete">
+          </form></td>
+        </tr>
+      <% }) %>
     </tbody>
   </table>
   </div>

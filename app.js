@@ -314,7 +314,7 @@
  });
 
 
- // TODO: comment routes
+ // comment routes
 
  // index of all comments on a place; have to be logged in to see them
  app.get('/places/:place_id/comments', routeMiddleware.ensureLoggedIn, function(req, res) {
@@ -354,7 +354,6 @@
  });
 
  // create a new comment
- // TODO (someday): refactor this code so it's not doing both create and save
  app.post('/places/:place_id/comments', routeMiddleware.ensureLoggedIn, function(req, res) {
    db.Comment.create(req.body.comment, function(err, comments) {
      if (err) {
@@ -403,14 +402,14 @@
    });
  });
 
- // look up a place by id and delete it
+ // look up a comment by id and delete it
  app.delete('/comments/:id', routeMiddleware.ensureCorrectCommentUser, function(req, res) {
    // we're getting the correct id from the form
    db.Comment.findByIdAndRemove(req.params.id, function(err, comment) {
      if (err) {
        res.render("errors/500");
      } else {
-       res.redirect('/places' + comment.place + '/comments');
+       res.redirect('/places');
      }
    });
  });

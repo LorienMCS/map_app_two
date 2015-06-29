@@ -3,7 +3,8 @@
 </head>
 <body class = "container">
 	<a href="/comments">Back</a>
-	<p><%= comment.body %></p>s
+	<p><%= comment.body %></p>
+	<p><%= comment.user %></p>
 
 	<form action="/comments/<%= comment._id %>?_method=delete" method="POST">
 		<input type="submit" value="delete">

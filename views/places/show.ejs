@@ -22,7 +22,7 @@
 
   <ul class="nav nav-pills nav-stacked">
     <li><a href="/places/<%= place._id%>/comments">See all comments on <%= place.address %></a></li>
-    <li><a href="/places/<%= place._id%>/comments/new">Add a new comment on <%= place.address %></a></li>
+    <li><a href="/places/<%= place._id%>/comments/new">Add a new comment to <%= place.address %></a></li>
     <li><a href="/places/<%= place.id %>/edit">Edit <%= place.address %></a></li>
     <li>
       <form role="form" action="/places/<%= place.id %>?_method=delete" method="POST">
