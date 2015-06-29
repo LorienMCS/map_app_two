@@ -14,12 +14,19 @@
 	</nav>
 </header>
 
-<div id="map-canvas"></div>
+<div class="row">
 
-<div <div class="btn-group-vertical">
-  <input type="button" class="btn btn-primary" value="Show Transit Routes" id ="transit"></input>
-  <input type="button" class="btn btn-primary" value="Show Bicycle Routes" id ="bike"></input>
-  <input type="button" class="btn btn-primary" value="Show Traffic Routes" id ="traffic"></input>
+	<div class="col-md-10">
+		<div id="map-canvas"></div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="btn-group-vertical">
+  			<input type="button" class="btn btn-primary" value="Show Transit Routes" id ="transit"></input>
+  			<input type="button" class="btn btn-primary" value="Show Bicycle Routes" id ="bike"></input>
+  			<input type="button" class="btn btn-primary" value="Show Traffic Routes" id ="traffic"></input>
+		</div>
+	</div>
+
 </div>
-
 <% include partials/footermap %>
