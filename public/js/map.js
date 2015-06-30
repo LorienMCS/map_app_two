@@ -4,6 +4,9 @@ $(function() {
   var transitLayer;
   var bikeLayer;
   var trafficLayer;
+  var weather;
+  var mapLat = 37.768120;
+  var mapLong = -122.441875;
 
   function initialize() {
     // get the div element to put the map in
@@ -12,7 +15,7 @@ $(function() {
     // MapOptions fields which affect the visibility and presentation of controls
     var mapOptions = {
       zoom: 12,
-      center: new google.maps.LatLng(37.768120, -122.441875),
+      center: new google.maps.LatLng(mapLat, mapLong),
       mapTypeId: google.maps.MapTypeId.TERRAIN
     };
 
@@ -25,24 +28,27 @@ $(function() {
 
   } // closing tag for initialize function
 
-
-
   function checkForLoc() {
     if (Modernizr.geolocation) {
       navigator.geolocation.getCurrentPosition(getLoc, resErr);
     } else {
       alert('Your browser does not support geolocation');
+      weather = 'http://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
     }
   }
 
   function getLoc(location) {
-    var userLatLong = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+    var userLat = location.coords.latitude;
+    var userLong = location.coords.longitude;
+    var userLatLong = new google.maps.LatLng(userLat, userLong);
     var marker = new google.maps.Marker({
       position: userLatLong,
       map: map,
       title: "You Are Here!",
       icon: 'usermarker.png'
     });
+    weather = 'http://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
+    getWeather(weather);
   }
 
   function resErr(error) {
@@ -53,6 +59,25 @@ $(function() {
     } else if (error.code == 3) {
       alert('TimeOut');
     }
+    weather = 'http://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
+    getWeather(weather);
+  }
+
+
+  function getWeather(weather) {
+    $.ajax({
+      url: weather,
+      jsonp: "callback",
+      dataType: "jsonp"
+    }).done(function(data) {
+      //setting the spans to the correct parameters
+      $('#location').html(data['location']['city']);
+      $('#temp').html(data['current_observation']['temp_f']);
+      $('#desc').html(data['current_observation']['weather']);
+      $('#wind').html(data['current_observation']['wind_string']);
+      //filling the image src attribute with the image url
+      $('#img').attr('src', data['current_observation']['icon_url']);
+    });
   }
 
 
@@ -89,7 +114,6 @@ $(function() {
   initialize();
   checkForLoc();
   loadPlaces();
-
 
   //display public transit network using the TransitLayer object
   function showTransit() {
