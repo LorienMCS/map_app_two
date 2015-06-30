@@ -33,7 +33,7 @@ $(function() {
       navigator.geolocation.getCurrentPosition(getLoc, resErr);
     } else {
       alert('Your browser does not support geolocation');
-      weather = 'http://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
+      weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
     }
   }
 
@@ -47,7 +47,7 @@ $(function() {
       title: "You Are Here!",
       icon: 'usermarker.png'
     });
-    weather = 'http://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
+    weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
     getWeather(weather);
   }
 
@@ -59,7 +59,7 @@ $(function() {
     } else if (error.code == 3) {
       alert('TimeOut');
     }
-    weather = 'http://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
+    weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
     getWeather(weather);
   }
 
