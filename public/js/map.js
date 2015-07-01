@@ -1,6 +1,9 @@
 // wrap other $() operations on your page that depend on the DOM being ready
 $(function() {
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
   var map;
+  var userLatLong;
   var transitLayer;
   var bikeLayer;
   var trafficLayer;
@@ -12,6 +15,11 @@ $(function() {
     // get the div element to put the map in
     var mapDiv = document.getElementById('map-canvas');
 
+    directionsDisplay = new google.maps.DirectionsRenderer({
+      suppressMarkers: true,
+      suppressInfoWindows: true
+    });
+
     // MapOptions fields which affect the visibility and presentation of controls
     var mapOptions = {
       zoom: 12,
@@ -21,6 +29,7 @@ $(function() {
 
     // Map constructor creates a new map using any optional parameters that are passed in
     map = new google.maps.Map(mapDiv, mapOptions);
+    directionsDisplay.setMap(map);
 
     transitLayer = new google.maps.TransitLayer();
     bikeLayer = new google.maps.BicyclingLayer();
@@ -40,7 +49,7 @@ $(function() {
   function getLoc(location) {
     var userLat = location.coords.latitude;
     var userLong = location.coords.longitude;
-    var userLatLong = new google.maps.LatLng(userLat, userLong);
+    userLatLong = new google.maps.LatLng(userLat, userLong);
     var marker = new google.maps.Marker({
       position: userLatLong,
       map: map,
@@ -80,6 +89,22 @@ $(function() {
     });
   }
 
+  function calcRoute(orig, dest) {
+    var selectedMode = document.getElementById('mode').value;
+    var request = {
+      origin: orig,
+      destination: dest,
+      // Note that Javascript allows us to access the constant
+      // using square brackets and a string value as its
+      // "property."
+      travelMode: google.maps.TravelMode[selectedMode]
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
+    });
+  }
 
   function loadPlaces() {
     $.getJSON('/places').done(function(data) {
@@ -104,6 +129,7 @@ $(function() {
 
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.open(marker.get('map'), marker);
+          calcRoute(userLatLong, thisLatLong);
         });
       }); // closing bracket for forEach
     }).fail(function() {

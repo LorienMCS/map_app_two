@@ -21,26 +21,47 @@
 	</div>
 
 	<div class="col-md-2">
-		<div class="btn-group-vertical">
+
+		<h5>If you allowed your location to be enabled, you can see a suggested travel route to any marker on the map:</h5>
+    <form role="form">
+   		<div class="form-group">
+      	<label for="mode">Travel Mode</label>
+    		<select class="form-control" id="mode" onchange="calcRoute();">
+      		<option value="DRIVING">Driving</option>
+      		<option value="WALKING">Walking</option>
+      		<option value="BICYCLING">Bicycling</option>
+      		<option value="TRANSIT">Transit</option>
+    		</select>
+    	</div>
+    </form>
+
+    <h5>If you did not choose to allow your location to be enabled, you can still see route overlays on the map:</h5>
+    <div class="btn-group-vertical">
   			<input type="button" class="btn btn-primary" value="Show Transit Routes" id ="transit"></input>
   			<input type="button" class="btn btn-primary" value="Show Bicycle Routes" id ="bike"></input>
   			<input type="button" class="btn btn-primary" value="Show Traffic Routes" id ="traffic"></input>
 		</div>
 
-		<div id="forecast">
-			<h4>Weather in <span id="location"> </span></h4>
-			<div id="imgdiv">
-				<img id="img" src=""/>
-			</div>
-			<p>Currently <span id="temp"> </span>&deg;F, <span id="desc"> </span></p>
-			<p>Wind: <span id="wind"></span></p>
-		</div>
+	</div>
+</div>
 
-		<div>
+<div class="clearfix"></div>
+
+<div class="row">
+	<div class="col-md-4">
+	<div id="forecast">
+		<h4>Weather in <span id="location"> </span></h4>
+		<div id="imgdiv">
+			<img id="img" src=""/>
+		</div>
+		<p>Currently <span id="temp"> </span>&deg;F, <span id="desc"> </span></p>
+		<p>Wind: <span id="wind"></span></p>
+	</div>
+	</div>
+
+	<div class="col-md-8">
 		<p>Weather information powered by Weather Underground</p>
 		<a href="http://www.wunderground.com/" target="_blank"><img src="wundergroundLogo_4c.png" alt="Weather Underground logo" width="150" border="0" /></a>
-		</div>
-
 	</div>
 </div>
 
