@@ -1,9 +1,10 @@
-#map_app_two
-A project using Google Maps JavaScript API to design a map of San Francisco that users can log into and add places they think are interesting, and comment on other users' places.
+#####:sunny: :palm_tree: :evergreen_tree:[Demo of my completed assignment](https://sfmapapp.herokuapp.com/):evergreen_tree: :palm_tree: :sunny:
 
 :sunny: :palm_tree: :evergreen_tree: SF Map App :evergreen_tree: :palm_tree: :sunny:
 
-This is a project for the Full Stack Program at [Galvanize](http://www.galvanize.com/courses/full-stack/). The goal for the assignment was to spend a week using the skills we've learned so far to create a web app.
+A project using Google Maps JavaScript API to design a map of San Francisco that users can log into and add places they think are interesting, and comment on other users' places.
+
+This is a project for the ninth week of the Full Stack Program at [Galvanize](http://www.galvanize.com/courses/full-stack/). The goal for the assignment was to spend a week using the skills we've learned so far to create a web app.
 
 I used and modified code and instructions from the [Google Maps JavaScript API Tutorial](https://developers.google.com/maps/documentation/javascript/tutorial). My understanding, from reading the [Google Developers Site Policies](https://developers.google.com/site-policies), is that we are able to use [nearly everything](https://developers.google.com/site-policies#restrictions) on the Google Developers site in our own creations, as long as we include the following attribution:
 
