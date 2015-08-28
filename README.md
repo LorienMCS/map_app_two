@@ -1,6 +1,6 @@
 #####:sunny: :palm_tree: :evergreen_tree:[Demo of my completed assignment](https://sfmapapp.herokuapp.com/):evergreen_tree: :palm_tree: :sunny:
 
-:sunny: :palm_tree: :evergreen_tree: SF Map App :evergreen_tree: :palm_tree: :sunny:
+###:sunny: :palm_tree: :evergreen_tree: SF Map App :evergreen_tree: :palm_tree: :sunny:
 
 A project using Google Maps JavaScript API to design a map of San Francisco that users can log into and add places they think are interesting, and comment on other users' places.
 
