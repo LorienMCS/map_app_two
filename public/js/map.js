@@ -3,6 +3,7 @@ $(function() {
   var directionsDisplay;
   var directionsService = new google.maps.DirectionsService();
   var map;
+  var infowindow = new google.maps.InfoWindow;
   var userLatLong;
   var transitLayer;
   var bikeLayer;
@@ -123,11 +124,12 @@ $(function() {
           icon: 'sfmarker.png'
         });
 
-        var infowindow = new google.maps.InfoWindow({
-          content: place.description
-        });
-
+        // Thanks to Dom for inspiration on styling these infowindows
+        // and closing previous open infowindow when another marker is clicked
         google.maps.event.addListener(marker, 'click', function() {
+          var content = '<h5>' + place.description + '</h5>';
+          infowindow.close();
+          infowindow.setContent(content);
           infowindow.open(marker.get('map'), marker);
           calcRoute(userLatLong, thisLatLong);
         });
